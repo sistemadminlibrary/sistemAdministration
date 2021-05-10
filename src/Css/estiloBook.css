@@ -1,0 +1,2 @@
+ .content-all{border:none;background-color:rgba(238,238,238,.9)}.Row{margin:2em}.modal-footer{display:flex;justify-content:center}.modal-header>h5{text-align:center}.content-book{display:flex}@media (max-width:800px){.content-book{display:flex;flex-direction:column;text-align:center}}.container-label{text-align:center}.container-date{display:flex;justify-content:center;margin:1.5em}.container-date>input{width:20em}
+ .name-autoLine{border-bottom: 1px solid rgba(0, 0, 0, .5);}

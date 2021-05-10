@@ -1,0 +1,23 @@
+
+.main-admin{min-height:45em}
+
+ @media (max-width:1366px){
+   .main-admin{min-height:41em}
+ }
+
+ .logo {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 8em;
+ }
+
+ .logo > img {
+   position: relative;
+   top: 0.2em;
+ }
+
+
+ ul > li > * {
+   color: white;
+ }
