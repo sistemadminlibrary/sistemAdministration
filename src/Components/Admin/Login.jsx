@@ -20,7 +20,7 @@ const Login = () => {
 
        let data = await clienteAxios.post("login", values);
        setData(data);
-       if(data.data.token) history.push("/admin/count");
+        if (data.data.token) history.push("/sistemAdministration");
     
         } catch (error) {
           Swal.fire({icon: 'error',title: 'Oops...',text: `${error.response.data.message}`});
