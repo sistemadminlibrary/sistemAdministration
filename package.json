@@ -2,6 +2,7 @@
   "name": "libraryapp",
   "version": "0.1.0",
   "private": true,
+  "homepage": " http://sistemadminlibrary.github.io/sistemAdministration/",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@testing-library/jest-dom": "^5.12.0",
