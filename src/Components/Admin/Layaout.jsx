@@ -44,7 +44,7 @@ const Layaout = ({children}) => {
             </div>
           <Menu theme="dark" mode="inline" style={{ position:'relative', top:'1.3em' }} >
           <Menu.Item className="hover-back"  key="1" icon={<HomeFilled />}>
-            <Link to="/admin/count" style={{color: "white"}}>
+            <Link to="/sistemAdministration" style={{color: "white"}}>
               Inicio
             </Link>
           </Menu.Item>
