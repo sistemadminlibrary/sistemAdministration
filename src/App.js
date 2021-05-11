@@ -30,7 +30,7 @@ function App() {
             <Route exact path="/admin/login" component={Login} />
 
             {auth.auth || localStorage.getItem("token") ? (
-              <Route exact path="/admin/count" component={CaseAdmin} />
+              <Route exact path="/sistemAdministration" component={CaseAdmin} />
             ) : (
               <Redirect to="/admin/login" />
             )}
@@ -45,7 +45,6 @@ function App() {
             <Route exact path="/admin/edit/:id" component={EditBook} />
             <Route exact path="/admin/report" component={ReportAdmin} />
           </Switch>
-          
         </Provider>
       </Router>
     </>
