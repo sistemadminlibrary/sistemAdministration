@@ -42,6 +42,7 @@ const Prestamos = () => {
                 <th scope="col">Telefono Usuario</th>
                 <th scope="col">Fecha Prestamo</th>
                 <th scope="col">Fecha Devolucion</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Eliminar</th>
               </tr>
             </thead>
@@ -58,6 +59,11 @@ const Prestamos = () => {
                   <td>{`${item.mobile_user}`}</td>
                   <td>{`${item.date_loan}`}</td>
                   <td>{`${item.return_date}`}</td>
+                  {(item.return_state === "assigned") ? 
+                    (<td className="return">Devuelto</td>)
+                    :
+                    (<td className="notreturn">No devuelto</td>)
+                  }
                   <td>
                     <button className="btn btn-danger" onClick={() => deleteLoan(item._id)}><DeleteFilled /></button>
                   </td>

@@ -13,7 +13,7 @@ import Prestamos from "./Components/Admin/Prestamos";
 import EspecificBook from "./Components/Admin/EspecificBook";
 import Reservations from "./Components/Admin/Reservations";
 import Returns from "./Components/Admin/Returns";
-import FormLoans from "./Components/Admin/FormLoans";
+
 import FormAddBook from "./Components/Admin/FormAddBook";
 import EditBook from "./Components/Admin/EditBook";
 import ReportAdmin from "./Components/Admin/ReportAdmin";
@@ -40,7 +40,6 @@ function App() {
             <Route exact path="/admin/add/books" component={FormAddBook} />
             <Route exact path="/admin/reservations" component={Reservations} />
             <Route exact path="/admin/returns" component={Returns} />
-            <Route exact path="/admin/loan/:id" component={FormLoans} />
             <Route exact path="/admin/register" component={Register} />
             <Route exact path="/admin/edit/:id" component={EditBook} />
             <Route exact path="/admin/report" component={ReportAdmin} />

@@ -39,11 +39,14 @@ const Reservations = () => {
     }
   }
 
-  const changeState = async (id) => {
-    let data = await clienteAxios.put(`update/reservation/${id}`);
-    if (data.status === 200) {
+  const changeState = async (id,bookId) => {
+
+    let data = await clienteAxios.put(`update/reservation/${id}/?bookI=${bookId}`);
+    if (data.data.message) {
       Swal.fire(`${data.data.message}`, "You clicked the button!", "success");
       setStatus(true);
+    } else if (data.data.messageError){
+      Swal.fire({ icon: 'error', title: 'Oops...', text: `${data.data.messageError}` });
     }
     return;
   }
@@ -108,7 +111,7 @@ const Reservations = () => {
                     <td>{`${item.date_loan}`}</td>
                     <td>{`${item.return_date}`}</td>
                     <td>
-                      <button className="btn btn-success" onClick={() => changeState(item._id)}><CheckOutlined /></button>
+                      <button className="btn btn-success" onClick={() => changeState(item._id,item.book_id)}><CheckOutlined /></button>
                     </td>
                     <td>
                       <button className="btn btn-danger" onClick={() => deleteReservation(item._id)} ><DeleteFilled /></button>

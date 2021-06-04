@@ -115,13 +115,6 @@ const EspecificBook = () => {
                     <td>{item.autor}</td>
                     <td>{item.amount}</td>
                     <td className="td-btn">
-
-                      < NavLink
-                        to={`/admin/loan/${item._id}`}
-                        className="btn btn-primary">
-                        Prestar
-                      </NavLink>
-
                       <NavLink to={`/admin/edit/${item._id}`} className="btn btn-info">Editar</NavLink>
                       <button className="btn btn-danger" onClick={() => deleted(item._id)}>Eliminar</button>
                     </td>
