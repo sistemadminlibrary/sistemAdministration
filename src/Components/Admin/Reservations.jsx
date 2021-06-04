@@ -41,7 +41,7 @@ const Reservations = () => {
 
   const changeState = async (id,bookId) => {
 
-    let data = await clienteAxios.put(`update/reservation/${id}/?bookI=${bookId}`);
+    let data = await clienteAxios.post(`update/reservation/${id}/?bookI=${bookId}`);
     if (data.data.message) {
       Swal.fire(`${data.data.message}`, "You clicked the button!", "success");
       setStatus(true);
