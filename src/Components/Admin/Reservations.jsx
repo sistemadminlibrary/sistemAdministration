@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react'
+import { getIds } from './Funtion/getDataReser';
 import Layaout from './Layaout';
 import Spinner from '../../Styled/Spinner';
 import Swal from 'sweetalert2';
@@ -8,20 +9,25 @@ import clienteAxios from '../../Config/config';
 
 import {
   CheckOutlined,
-  DeleteFilled 
+  NotificationFilled,
+  DeleteFilled,
   } from '@ant-design/icons';
 
 const Reservations = () => {
-  
+ 
   const [reservations,saveReservations] = useState("");
   const [nameReservation,setReservation] = useState("");
+ 
+  
   const [status,setStatus] = useState(true);
 
   useEffect(() => {
    if(status){
+   
      const callAPI = async () => {
-       let data = await clienteAxios.get("get/reservations");
+        let data = await clienteAxios.get("get/reservations");
        saveReservations(data.data);
+       getIds(data.data)
      }
      callAPI();
      setStatus(false);
@@ -51,9 +57,18 @@ const Reservations = () => {
     return;
   }
 
+  const sendMessage = async (mobil, name) => {
+    let data = await clienteAxios.post(`send/message?phone=${mobil}&name=${name}`);
+    if (data.status === 200) {
+      Swal.fire(`El usuario ${name} a sido notificado`, "You clicked the button!", "success");
+    }
+  }
+
+
   const deleteReservation = async (id) => {
     let data = await clienteAxios.post(`delete/loan/${id}`);
     if(data.status === 200) setStatus(true);
+   
   }
 
   const handelReservation = (e) => {
@@ -91,14 +106,19 @@ const Reservations = () => {
                   <th scope="col">Telefono Usuario</th>
                   <th scope="col">Fecha Prestamo</th>
                   <th scope="col">Fecha Devolucion</th>
+                  <th scope="col">Estado</th>
                   <th scope="col">Aprobar</th>
+                  <th scope="col">Enviar Aviso</th>
                   <th scope="col">Eliminar</th>
+                 
                 </tr>
               </thead>
 
               <tbody >
                 {reservations.map((item) => (
-                  <tr key={`${item._id}`} id={item._id}>
+                  
+
+                  <tr key={`${item._id}`} id={item.book_id}>
                     <td>
                       <picture>
                         <img src={`${item.image_book}`} height="100" width="100" alt="cover-book" />
@@ -110,8 +130,12 @@ const Reservations = () => {
                     <td>{`${item.mobile_user}`}</td>
                     <td>{`${item.date_loan}`}</td>
                     <td>{`${item.return_date}`}</td>
+                    <td></td>
                     <td>
                       <button className="btn btn-success" onClick={() => changeState(item._id,item.book_id)}><CheckOutlined /></button>
+                    </td>
+                    <td>
+                      <button className="btn btn-warning" title="enviar aviso" onClick={() => sendMessage(item.mobile_user, item.name_user)}><NotificationFilled /></button>
                     </td>
                     <td>
                       <button className="btn btn-danger" onClick={() => deleteReservation(item._id)} ><DeleteFilled /></button>

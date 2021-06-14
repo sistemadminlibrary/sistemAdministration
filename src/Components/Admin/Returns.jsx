@@ -9,14 +9,14 @@ import '../../Css/estiloAdmin.css';
 import clienteAxios from '../../Config/config';
 
 import {
-  CheckOutlined,
+ 
   DeleteFilled,
   NotificationFilled
 } from '@ant-design/icons';
 
 const Returns = () => {
 
-  const [returns,saveReturns] = useState("");
+  const [returns,saveReturns] = useState([]);
   const [nameUser,setName] = useState("");
   const [status,setStatus] = useState(true);
 
@@ -43,17 +43,17 @@ const Returns = () => {
     }
   }
 
-  const changeState = async (id) => {
-    let data = await clienteAxios.put(`update/loan/${id}`);
-   if(data.status === 200){
-     Swal.fire(`${data.data.message}`, "You clicked the button!", "success");
-     setStatus(true);
-   }
-   return;
-  }
+  // const changeState = async (id) => {
+  //   let data = await clienteAxios.put(`update/loan/${id}`);
+  //  if(data.status === 200){
+  //    Swal.fire(`${data.data.message}`, "You clicked the button!", "success");
+  //    setStatus(true);
+  //  }
+  //  return;
+  // }
   
   const sendMessage = async (mobil,name) => {
-   let data = await clienteAxios.post(`send/message?phone=${mobil}`);
+   let data = await clienteAxios.post(`send/message?phone=${mobil}&dev='dev'`);
    if(data.status === 200){
      Swal.fire(`El usuario ${name} a sido notificado`, "You clicked the button!", "success");
     }
@@ -78,7 +78,7 @@ const Returns = () => {
 
   return (
     <Layaout>
-      {(!returns) ? <Spinner/> : (
+      {(!returns.length) ? <Spinner/> : (
         <>
           <div className="container-search ">
             <div className="content-search d-flex col-sm-12 col-md-9 col-lg-4">
@@ -97,7 +97,7 @@ const Returns = () => {
                 <th scope="col">Telefono Usuario</th>
                 <th scope="col">Fecha Prestamo</th>
                 <th scope="col">Fecha Devolucion</th>
-                <th scope="col">Aprobar</th>
+              
                 <th scope="col">Enviar Aviso</th>
                 <th scope="col">Eliminar</th>
               </tr>
@@ -118,9 +118,7 @@ const Returns = () => {
                   <td>{`${Item.mobile_user}`}</td>
                   <td>{`${Item.date_loan}`}</td>
                   <td>{`${Item.return_date}`}</td>
-                  <td>
-                    <button className="btn btn-success" onClick={() => changeState(Item._id)}><CheckOutlined /></button>
-                  </td>
+                  
                   <td>
                     <button className="btn btn-warning" title="enviar aviso" onClick={() => sendMessage(Item.mobile_user,Item.name_user)}><NotificationFilled /></button>
                   </td>

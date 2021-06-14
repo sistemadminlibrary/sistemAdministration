@@ -7,7 +7,7 @@ import { DeleteFilled } from '@ant-design/icons'
 import clienteAxios from '../../Config/config';
 const Prestamos = () => {
   
-  const [loans, saveLoans] = useState("");
+  const [loans, saveLoans] = useState([]);
   const [status,setStatus] = useState(true);
   
   useEffect(() => {
@@ -29,7 +29,7 @@ const Prestamos = () => {
  
   return (
       <Layaout>
-      {(!loans) ? <Spinner/> : (
+      {(!loans.length) ? <Spinner/> : (
         <>
           
         <div className="asing-scroll">

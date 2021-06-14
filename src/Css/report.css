@@ -1,0 +1,38 @@
+.container-title > h2 {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.section-info {
+  display: flex;
+  margin-top: 4em;
+}
+
+.section-info > .info {
+  margin: 3em;
+}
+
+.section-info > .info > p{
+  font-size: 1.8em;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.content-btn-print {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.content-btn-print > .btn-primary {
+  margin-right: 3em;
+}
+
+.container-loan-table {
+  margin: 3em;
+}
+
+.tr > th {
+  color: black;
+}
+
+.tr-data > th {
+  color: black;
+}
