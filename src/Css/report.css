@@ -36,3 +36,77 @@
 .tr-data > th {
   color: black;
 }
+
+.content-opt{
+width: 100%;
+
+}
+
+.container-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-options > ul {
+ display: flex; 
+ justify-content: space-evenly;
+ list-style: none;
+}
+
+.container-options > ul > li {
+border: 1px solid rgba(59, 59, 59, 0.26);
+
+}
+
+
+
+.container-options > ul > .firsChil {
+  border-bottom-color: rgba(255, 255, 255, 0.39);
+}
+
+.container-options > ul > .topBorder {
+  border-top-color: rgba(255, 255, 255, 0.39);
+ border-right-color: rgba(255, 255, 255, 0.425);
+  border-left-color: rgba(255, 255, 255, 0.425);
+}
+
+.container-options > ul > .quitB {
+border-top-color: rgba(255, 255, 255, 0.425);
+border-left-color: rgba(255, 255, 255, 0.425);
+border-right-color: rgba(255, 255, 255, 0.425);
+}
+
+.container-options > ul > .asignedClas {
+border-bottom-color: rgba(255, 255, 255, 0.425);
+
+}
+
+.container-options > ul > .quitB:hover {
+  cursor: pointer;
+  background-color: rgba(192, 190, 190, 0.363);
+  transform: scale(1.02);
+}
+
+.container-options > ul > .topBorder:hover {
+  cursor: pointer;
+  background-color: rgba(192, 190, 190, 0.363);
+}
+
+.container-options > ul > li > p{
+margin: 1em;
+ font-family: 'Courier New', Courier, monospace;
+text-align: center;
+font-size: 1.03em;
+}
+
+.container > h2 {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+@media (min-width:1297px) {
+  .container-options > ul > li {
+width: 16em;
+}
+
+}

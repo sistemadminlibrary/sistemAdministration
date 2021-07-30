@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import Layaout from './Layaout';
 import Spinner from '../../Styled/Spinner';
+import Title from './Title';
 import Swal from 'sweetalert2';
 import '../../Css/estiloAdmin.css';
 
@@ -82,6 +83,9 @@ const EspecificBook = () => {
      <Layaout>
       {(!datos) ? (<Spinner />) :(
      <>
+     <div className="container">
+       <Title title="Libros"/>
+     </div>
       <div className="container-search ">
       <div className="content-search d-flex col-sm-12 col-md-9 col-lg-4">
               <input type="text" name="name" onChange={saveName} placeholder="Nombre del libro" className="form-control" />
@@ -96,7 +100,7 @@ const EspecificBook = () => {
                   <th scope="col">Imagen</th>
                   <th scope="col">Nombre</th>
                   <th scope="col">Autor</th>
-                  <th scope="col">N.libros</th>
+                  <th scope="col">Libros disponibles</th>
                   <th scope="col">Aciones</th>
                 </tr>
               </thead>

@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import Layaout from './Layaout';
+import Title from './Title';
 import Spinner from '../../Styled/Spinner';
 import '../../Css/estiloAdmin.css';
 
@@ -29,9 +30,11 @@ const Prestamos = () => {
  
   return (
       <Layaout>
-      {(!loans.length) ? <Spinner/> : (
+      {(!loans.length) ? <Spinner title="No hay Prestamos"/> : (
         <>
-          
+          <div className="container">
+            <Title title="Prestamos" />
+          </div>
         <div className="asing-scroll">
           <table className="table table-striped">
             <thead>

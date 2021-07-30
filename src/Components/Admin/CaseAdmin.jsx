@@ -6,45 +6,54 @@ import '../../Css/estiloAdmin.css';
 import Layaout from './Layaout';
 import Swal from 'sweetalert2';
 
+import { useCount } from '../../Hooks/useCount';
+
 import book from '../../Img/asset/book.png';
 import loans from '../../Img/asset/calendar.png';
 import clock from '../../Img/asset/clock.png';
 import reservations from '../../Img/asset/calendar_book.png';
 
-import { useCount  } from '../../Hooks/useCount';
 
 const CaseAdmin = () => {
-//
+
   const path = `${process.env.REACT_APP_BACKEND}`;
   const socket = useMemo(() => io.connect(path, {
     transports: ['websocket']
   }),[path]);
-  
-  let {
+
+
+  const {
     countBoook,
     countLoans,
     countReturn,
     countReservation,
     date,
+    setStatus,
+    status
   } = useCount();
-  
+
   useEffect(() => {
-    
-    socket.on('connect',() => {
+    socket.on("connect", () => {
       socket.on("envio", (data) => {
         Swal.fire(`${data}`, "You clicked the button!", "success");
-      })
-    });
-  }, [socket]);
+        setStatus(true);
+      });
 
+      socket.on("prestamo", (data) => {
+        Swal.fire(`${data}`, "You clicked the button!", "success");
+        setStatus(true);
+      });
+    });
+  }, [socket,status]);
+  
   const emitNotifications = () => {
     let year = new Date().getFullYear(),
     month = new Date().getMonth() + 1,
-      day = new Date().getDate();
+    day = new Date().getDate();
     let fecha = `${year}-${month <= 9 ? "0" + month : month}-${
       day <= 9 ? "0" + day : day
     }`;
-
+    
     if (!date) return null;
     date.forEach((Item) => {
       if (fecha.indexOf(Item.return_date) !== -1) {

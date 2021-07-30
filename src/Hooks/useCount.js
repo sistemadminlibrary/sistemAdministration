@@ -4,59 +4,49 @@ import clienteAxios from "../Config/config";
 
 export const useCount = () => {
 
+  
+   const [status,setStatus] = useState(true);
     const [date,setDate] = useState("");
     const [countBoook, saveCountBook] = useState(0);
     const [countLoans, saveCountLoans] = useState(0);
     const [countReturn, saveCountReturn] = useState(0);
     const [countReservation, saveCountReservations] = useState(0);
    
+ 
 
+    const url = ["get/books", "get/loans", "get/returns", "get/reservations"];
+    let doc = [];
   useEffect(() => {
-    let call = async () => {
-      const primerGet = new Promise((resolve, reject) => {
-        try {
-          resolve(clienteAxios.get("get/books"));
-        } catch (error) {
-          reject(error);
-        }
-      });
-      const segundoGet = new Promise((resolve, reject) => {
-        try {
-          resolve(clienteAxios.get("get/loans"));
-        } catch (error) {
-          reject(error);
-        }
-      });
-      const tercerGet = new Promise((resolve, reject) => {
-        try {
-          resolve(clienteAxios.get("get/returns"));
-        } catch (error) {
-          reject(error);
-        }
-      });
-      const cuartoGet = new Promise((resolve, reject) => {
-        try {
-          resolve(clienteAxios.get("get/reservations"));
-        } catch (error) {
-          reject(error);
-        }
-      });    
-      let data = await Promise.all([
-        primerGet,
-        segundoGet,
-        tercerGet,
-        cuartoGet,
-      ]);
+ 
+    if(status){
+       let call = async () => {
+      
+        url.forEach(uri => {
+          let data = clienteAxios.get(uri);
+          doc.push(data);
+         
+        })
+        
+        
+        let dc = await Promise.all(doc);
+        
 
-      let numBook = data[0].data.reduce((acc,el) => acc + parseInt(el.amount) ,0);
-      saveCountBook(numBook);
-      saveCountLoans(data[1].data.length);
-      saveCountReturn(data[2].data.length);
-      saveCountReservations(data[3].data.length);
-      setDate(data[2].data)
-    };
-    call();
-  }, []);
+       let numBook = dc[0].data.reduce(
+         (acc, el) => acc + parseInt(el.amount),
+         0
+       );
+       saveCountBook(numBook);
+       saveCountLoans(dc[1].data.length);
+       saveCountReturn(dc[2].data.length);
+       saveCountReservations(dc[3].data.length);
+       setDate(dc[2].data);
+       
+     };
+     call();
+    setStatus(false);
+    }
+
+  }, [status]);
 
   
   return {
@@ -64,6 +54,8 @@ export const useCount = () => {
     countLoans,
     countReturn,
     countReservation,
-   date
+    date,
+    setStatus,
+    status,
   };
 };

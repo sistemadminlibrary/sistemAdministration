@@ -10,8 +10,9 @@
     data.forEach((Item) => {
       if (fecha.indexOf(Item.return_date) !== -1) {
         let td = document.getElementById(`${Item._id}`);
-         td.style.backgroundColor = "red";
-         td.children[7].children[0].disabled = false;
+         td.style.backgroundColor = "lightcoral";
+         td.children[6].children[0].disabled = false;
+
       }else{
         let buttom = document.querySelectorAll(".btn-warning");
        buttom.forEach(btn => {

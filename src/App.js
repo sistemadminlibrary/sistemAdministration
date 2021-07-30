@@ -4,6 +4,7 @@ import { BrowserRouter as Router , Redirect, Route, Switch } from 'react-router-
 
 import './Css/estilonav.css';
 import { CRMAuthContext } from "./Context/AuthProvider";
+import { StateKey } from './Context/StateKey'
 import { Provider } from "./Context/Provider";
 
 import Register from "./Components/Admin/Register";
@@ -26,24 +27,34 @@ function App() {
     <>
       <Router>
         <Provider>
-          <Switch>
-            <Route exact path="/admin/login" component={Login} />
+          <StateKey>
+            <Switch>
+              <Route exact path="/admin/login" component={Login} />
 
-            {auth.auth || localStorage.getItem("token") ? (
-              <Route exact path="/sistemAdministration" component={CaseAdmin} />
-            ) : (
-              <Redirect to="/admin/login" />
-            )}
+              {auth.auth || localStorage.getItem("token") ? (
+                <Route
+                  exact
+                  path="/sistemAdministration"
+                  component={CaseAdmin}
+                />
+              ) : (
+                <Redirect to="/admin/login" />
+              )}
 
-            <Route exact path="/admin/loans" component={Prestamos} />
-            <Route exact path="/admin/books" component={EspecificBook} />
-            <Route exact path="/admin/add/books" component={FormAddBook} />
-            <Route exact path="/admin/reservations" component={Reservations} />
-            <Route exact path="/admin/returns" component={Returns} />
-            <Route exact path="/admin/register" component={Register} />
-            <Route exact path="/admin/edit/:id" component={EditBook} />
-            <Route exact path="/admin/report" component={ReportAdmin} />
-          </Switch>
+              <Route exact path="/admin/loans" component={Prestamos} />
+              <Route exact path="/admin/books" component={EspecificBook} />
+              <Route exact path="/admin/add/books" component={FormAddBook} />
+              <Route
+                exact
+                path="/admin/reservations"
+                component={Reservations}
+              />
+              <Route exact path="/admin/returns" component={Returns} />
+              <Route exact path="/admin/register" component={Register} />
+              <Route exact path="/admin/edit/:id" component={EditBook} />
+              <Route exact path="/admin/report" component={ReportAdmin} />
+            </Switch>
+          </StateKey>
         </Provider>
       </Router>
     </>

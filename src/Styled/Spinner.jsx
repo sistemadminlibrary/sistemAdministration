@@ -26,9 +26,14 @@ animation: ${spin} 1s linear infinite;
 
 
 
-const Spinner = () => {
+const Spinner = ({title}) => {
   return (
+    <>
     <SpinerElement></SpinerElement>
+    <div className="text-center">
+      <h1>{title}</h1>
+    </div>
+    </>
   )
 }
 

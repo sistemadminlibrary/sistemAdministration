@@ -5,7 +5,7 @@ const HeaderAdmin = () => {
     <>
         
           <div className="container-title">
-            <h3>Biblioteca Publica de Totogalpa</h3>
+            <h3>Biblioteca Publica la Merced</h3>
           </div>
         
        

@@ -3,6 +3,7 @@ import { verifydate } from './Funtion/date'
 
 import Layaout from './Layaout';
 import Spinner from '../../Styled/Spinner';
+import Title from './Title';
 import Swal from 'sweetalert2';
 import '../../Css/estiloAdmin.css';
 
@@ -78,8 +79,11 @@ const Returns = () => {
 
   return (
     <Layaout>
-      {(!returns.length) ? <Spinner/> : (
+      {(!returns.length) ? <Spinner title="No hay Devoluciones"/> : (
         <>
+        <div className="container">
+          <Title title="Devoluciones"/>
+        </div>
           <div className="container-search ">
             <div className="content-search d-flex col-sm-12 col-md-9 col-lg-4">
               <input type="text" onChange={saveName} name="name" className="form-control" placeholder="Ingresa el nombre del usuario" />

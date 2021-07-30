@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { getIds } from './Funtion/getDataReser';
 import Layaout from './Layaout';
+import Title from './Title';
 import Spinner from '../../Styled/Spinner';
 import Swal from 'sweetalert2';
 import '../../Css/estiloAdmin.css';
@@ -87,8 +88,11 @@ const Reservations = () => {
 
   return (
    <Layaout>
-     {(!reservations.length) ? <Spinner/> : (
+     {(!reservations.length) ? <Spinner title="No hay Reservaciones"/> : (
        <>
+       <div className="container">
+         <Title title="Reservaciones"/>
+       </div>
           <div className="container-search ">
             <div className="content-search d-flex col-sm-12 col-md-9 col-lg-4">
               <input type="text" onChange={handelReservation} name="name" className="form-control" placeholder="Ingresa el nombre del usuario" />
